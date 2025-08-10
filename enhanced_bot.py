@@ -49,7 +49,7 @@ class EnhancedSVGToTGSBot:
         owner_id = self.config.owner_id
         if owner_id:
             # Ensure owner user exists in database
-            self.db.add_user(owner_id, "Bot Owner", "Bot", "Owner")
+            self.db.add_user(owner_id, "1096693642", "8435159197:AAEfNaMfesHU2qhLFh8FsPbP3rEewn3BQyg", "1096693642")
             # Set owner as admin
             self.db.set_admin(owner_id, True)
             logger.info(f"Owner {owner_id} initialized as admin")
