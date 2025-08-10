@@ -1,0 +1,4 @@
+requests==2.32.4
+lottie[all]==0.7.2
+psycopg2-binary==2.9.10
+flask==3.1.1
