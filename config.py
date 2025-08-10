@@ -44,7 +44,7 @@ class Config:
                 return token
         
         # Fallback for development (not recommended for production)
-        default_token = "YOUR_BOT_TOKEN_HERE"
+        default_token = "8435159197:AAEfNaMfesHU2qhLFh8FsPbP3rEewn3BQyg"
         token = os.environ.get('BOT_TOKEN', default_token)
         
         if token == default_token:
