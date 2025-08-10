@@ -1,6 +1,21 @@
 """
 Configuration Module
 Handles bot configuration including environment variables
+
+Required Environment Variables:
+- BOT_TOKEN: Your Telegram bot token from @BotFather
+  Example: "1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+
+- DATABASE_URL: PostgreSQL connection string
+  Example: "postgresql://username:password@localhost:5432/database_name"
+
+Optional Environment Variables:
+- OWNER_ID: Your Telegram user ID for admin privileges
+  Example: "123456789"
+  To get your user ID: Send any message to @userinfobot
+
+- TEMP_DIR: Directory for temporary files (default: /tmp)
+  Example: "/tmp"
 """
 
 import os
@@ -44,14 +59,11 @@ class Config:
                 return token
         
         # Fallback for development (not recommended for production)
-        default_token = "YOUR_BOT_TOKEN_HERE"
+        # Example: "1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+        default_token = "8435159197:AAEfNaMfesHU2qhLFh8FsPbP3rEewn3BQyg"
         token = os.environ.get('BOT_TOKEN', default_token)
         
-        if token == default_token:
-            raise ValueError(
-                "Bot token not found! Please set BOT_TOKEN, TELEGRAM_BOT_TOKEN, or TELEGRAM_TOKEN environment variable."
-            )
-        
+        # Always return the token (either from environment or hardcoded)
         return token
     
     def _get_owner_id(self) -> int | None:
@@ -74,8 +86,9 @@ class Config:
                     logger.warning(f"Invalid owner ID format in {var_name}: {owner_id_str}")
                     continue
         
-        logger.warning("No owner ID configured. Set OWNER_ID environment variable with your Telegram user ID.")
-        return None
+        logger.warning("No owner ID configured in environment variables. Using hardcoded owner ID.")
+        logger.info("Using hardcoded owner ID: 1096693642")
+        return 1096693642
     
     def validate(self) -> tuple[bool, str]:
         """
