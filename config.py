@@ -34,7 +34,6 @@ class Config:
         Raises:
             ValueError: If bot token is not found
         """
-        # Try different environment variable names
         token_vars = ['BOT_TOKEN', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_TOKEN']
         
         for var_name in token_vars:
@@ -56,26 +55,12 @@ class Config:
     
     def _get_owner_id(self) -> int | None:
         """
-        Get bot owner Telegram user ID from environment variables
-        
+        Get bot owner Telegram user ID
         Returns:
-            int | None: Owner user ID or None if not configured
+            int | None: Owner user ID
         """
-        owner_vars = ['OWNER_ID', 'BOT_OWNER_ID', 'ADMIN_ID']
-        
-        for var_name in owner_vars:
-            owner_id_str = os.environ.get(var_name)
-            if owner_id_str:
-                try:
-                    owner_id = int(owner_id_str)
-                    logger.info(f"Owner ID found in environment variable: {var_name}")
-                    return owner_id
-                except ValueError:
-                    logger.warning(f"Invalid owner ID format in {var_name}: {owner_id_str}")
-                    continue
-        
-        logger.warning("No owner ID configured. Set OWNER_ID environment variable with your Telegram user ID.")
-        return None
+        # Ku dar owner ID-gaaga si toos ah halkan
+        return 1096693642  # Telegram User ID
     
     def validate(self) -> tuple[bool, str]:
         """
